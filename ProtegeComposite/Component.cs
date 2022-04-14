@@ -8,15 +8,17 @@ namespace ProtegeComposite
 {
     abstract class Component
     {
+        
         private string _name;
         public string Name { get =>_name;  set => Name = _name; }
-
+        public List<Slots> slots { get; set; } 
         protected Component(string name)
         {
             _name = name;
         }
         public abstract void Insert(string name, string newClassName);
         public Component() { }
+        
         public virtual void Add(Component component)
         {
             throw new NotImplementedException();
@@ -30,5 +32,8 @@ namespace ProtegeComposite
             return true;
         }
         public abstract void Display(int depth);
+        public abstract void createSlot(Component component, string slotName);
+        public abstract void addSlot(string name);
+
     }
 }

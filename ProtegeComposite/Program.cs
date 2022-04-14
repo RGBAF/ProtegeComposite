@@ -16,6 +16,7 @@ namespace ProtegeComposite
             Console.WriteLine("/addClass - Добавление класса;");
             Console.WriteLine("/addInstance - Добавление инстанции");
             Console.WriteLine("/createSlot - Создание слота");
+            Console.WriteLine("/makeQuery - Сделать запрос");
         }
         static void Main(string[] args)
         {
@@ -58,6 +59,26 @@ namespace ProtegeComposite
                     root.Insert(name, newNameClass);
                     Console.WriteLine();
                     tree.Display(1);
+                }
+                else if(command == "/addInstance")
+                {
+                    Console.WriteLine("В разработке...");
+                }
+                else if (command == "/createSlot")
+                {
+                    Console.WriteLine("В разработке...");
+                    Console.WriteLine("Введите название слота: ");
+                    string slotName = Console.ReadLine();
+                    tree.createSlot(tree, slotName);
+                    Console.WriteLine("Слот " + slotName + " создан!" );
+                }
+                else if (command == "/makeQuery")
+                {
+                    Console.WriteLine("В разработке...");
+                }
+                else if (command == "/printSlots")
+                {
+                    Console.WriteLine("В разработке...");
                 }
             }
             /* Component Class = new Class("Class1");

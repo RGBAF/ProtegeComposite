@@ -28,6 +28,15 @@ namespace ProtegeComposite
         {
             Console.WriteLine(new string('-', depth) + Name);
         }
-        
+
+        public override void createSlot(Component component, string slotName)
+        {
+            
+        }
+
+        public override void addSlot(string name)
+        {
+            addSlot(name);
+        }
     }
 }
