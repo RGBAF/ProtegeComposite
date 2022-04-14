@@ -43,16 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aggregate.cs" />
     <Compile Include="Class.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Component.cs" />
-    <Compile Include="ConcerteAggregate.cs" />
-    <Compile Include="ConcreteIterator.cs" />
-    <Compile Include="IEnumerable.cs" />
-    <Compile Include="IEnumerator.cs" />
     <Compile Include="Instance.cs" />
-    <Compile Include="Iterator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

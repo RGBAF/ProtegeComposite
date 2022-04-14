@@ -53,26 +53,36 @@ namespace ProtegeComposite
             }
             
         }
-        public int ComponentSearch(string name)
+        public override void Insert(string name, string newClassName)
         {
-            for (int i = 0; i < _classes.Count; i++)
+
+            foreach (var component in _classes)
             {
-                
-                if(_classes[i].Name == name)
+
+                if (component.Name == name)
                 {
-                    return i;
+                    component.Add(new Class(newClassName));
                 }
+                else if (component.Name != name)
+                {
+                    component.Insert(name, newClassName);
+                }
+
             }
-            return 0;
-        }  
-        public override void Insert(string name, string name2)
-        {
-            _classes[ComponentSearch(name)].Add(new Class(name2));
+
         }
 
         public override void Remove()
         {
             base.Remove();
+        }
+        public override void Display(int depth)
+        {
+            Console.WriteLine(new String(' ', depth)+Name);
+            foreach(var component in _classes)
+            {
+                component.Display(depth+2);
+            }
         }
     }
 }

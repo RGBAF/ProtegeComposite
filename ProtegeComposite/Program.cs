@@ -11,34 +11,31 @@ namespace ProtegeComposite
         static void Main(string[] args)
         {
 
-        
+
             Client client = new Client();
             Component tree = new Class("Tree");
-            int command;
-            string name, name2;
-            Component class1 = new Class("class1");
-            Component class2 = new Class("class2");
-            Component instance = new Instance("Instance1");
-            Component instance2 = new Instance("Instance2");
-            Component instance3 = new Instance("Instance3");
-            tree.Add(class1);
-            tree.Add(class2);
-            tree.Print();
-            Console.WriteLine("Желайте ли добавить что нибудь?\n 1.ClassAdd");
-            command = int.Parse(Console.ReadLine());
-            switch (command)
-            {
-                case 1:
-                    Console.WriteLine("Введите имя новой ветки:");
-                    name= Console.ReadLine();
-                    Console.WriteLine("Введите куда новой ветки:");
-                    name2 = Console.ReadLine();
-                    tree.Insert(name2, name);
-                    break;
-                default: break;
-            }
-            client.ClientCode(tree,class2) ;
-
+            Component Class = new Class("Class1");
+            Component Class2 = new Class("Class2");
+            Component Class11 = new Class("Class11");
+            Component Class12 = new Class("Class12");
+            Component Class13 = new Class("Class13");
+            Component Class21 = new Class("Class21");
+            Component Class22 = new Class("Class22");
+            Component Instance11 = new Instance("Instance11");
+            Component Instance12 = new Instance("Instance12");
+            tree.Add(Class);
+            tree.Add(Class2);
+            Class.Add(Class11);
+            Class.Add(Class12);
+            Class.Add(Class13);
+            Class2.Add(Class21);
+            Class2.Add(Class22);
+            Class11.Add(Instance11);
+            Class11.Add(Instance12);
+            tree.Display(1);
+            tree.Insert("Tree", "newClass");
+            Console.WriteLine();
+            tree.Display(1);
             Console.ReadLine();
         }
     }

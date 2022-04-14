@@ -29,5 +29,11 @@ namespace ProtegeComposite
         {
             throw new NotImplementedException();
         }
+
+        public override void Display(int depth)
+        {
+            Console.WriteLine(new String(' ', depth) + Name);
+        }
+        
     }
 }
