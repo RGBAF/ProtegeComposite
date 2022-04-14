@@ -18,7 +18,7 @@ namespace ProtegeComposite
 
         public override void Add(Component component)
         {
-            this._classes.Add(component);
+            _classes.Add(component);
         }
 
         public override bool IsComposite()
@@ -26,51 +26,29 @@ namespace ProtegeComposite
             return true;
         }
 
-        public override string Operation()
+        internal void Display()
         {
-            int i = 0;
-            string result = Name + "(";
-            foreach (Component component in this._classes)
-            {
-                result += component.Operation();
-                if (i != this._classes.Count - 1)
-                {
-                    result += "+";
-                }
-                i++;
+            throw new NotImplementedException();
+        }
 
-            }
-            return result + ")";
-        }
-        public override void Print()
-        {
-            Console.WriteLine();
-            Console.WriteLine("Класс: " + Name);
-            Console.WriteLine("Инстанция: ");
-            for (int i = 0; i < _classes.Count; i++)
-            {
-                _classes[i].Print();
-            }
-            
-        }
         public override void Insert(string name, string newClassName)
         {
-
             foreach (var component in _classes)
             {
-
-                if (component.Name == name)
+                if (component.IsComposite())
                 {
-                    component.Add(new Class(newClassName));
+                    if (component.Name == name)
+                    {
+                        component.Add(new Class(newClassName));
+                    }
+                    else if (component.Name != name)
+                    {
+                        component.Insert(name, newClassName);
+                    }
                 }
-                else if (component.Name != name)
-                {
-                    component.Insert(name, newClassName);
-                }
-
             }
-
-        }
+           
+        }  
 
         public override void Remove()
         {
@@ -78,7 +56,7 @@ namespace ProtegeComposite
         }
         public override void Display(int depth)
         {
-            Console.WriteLine(new String(' ', depth)+Name);
+            Console.WriteLine(new string('-', depth)+Name);
             foreach(var component in _classes)
             {
                 component.Display(depth+2);

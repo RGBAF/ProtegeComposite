@@ -17,7 +17,6 @@ namespace ProtegeComposite
         }
         public abstract void Insert(string name, string newClassName);
         public Component() { }
-        public abstract string Operation();
         public virtual void Add(Component component)
         {
             throw new NotImplementedException();
@@ -30,7 +29,6 @@ namespace ProtegeComposite
         {
             return true;
         }
-        public abstract void Print();
         public abstract void Display(int depth);
     }
 }
