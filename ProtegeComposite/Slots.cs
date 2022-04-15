@@ -9,7 +9,6 @@ namespace ProtegeComposite
     public class Slots
     {
         public string Name { get; set; }
-
         public Slots(string name)
         {
             Name = name;

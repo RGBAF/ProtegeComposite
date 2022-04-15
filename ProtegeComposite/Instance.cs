@@ -8,35 +8,18 @@ namespace ProtegeComposite
 {
     internal class Instance: Component
     {
-       
-
         public Instance(string name):base(name){}
-
-        
         public override bool IsComposite()
         {
             return false;
         }
-       
-
-        public override void Insert(string name, string name2)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Display(int depth)
         {
-            Console.WriteLine(new string('-', depth) + Name);
+            Console.WriteLine(new string('-', depth) + "Instance: " + Name);
         }
-
-        public override void createSlot(Component component, string slotName)
+        public override void addSlot(string name, string slotName)
         {
-            
-        }
-
-        public override void addSlot(string name)
-        {
-            addSlot(name);
+           
         }
     }
 }

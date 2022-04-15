@@ -27,14 +27,14 @@ namespace ProtegeComposite
             return true;
         }
         
-        //Вставка элемента в класс
+        //Вставка класса в класс 
         public override void Insert(string name, string newClassName)
         {
             foreach (var component in _classes)
             {
                 if (component.IsComposite())
                 {
-                    if (component.Name == name)
+                    if (component.Name.ToLower() == name.ToLower())
                     {
                         component.Add(new Class(newClassName));
                     }
@@ -45,7 +45,26 @@ namespace ProtegeComposite
                 }
             }
            
-        }  
+        }
+        //Создание инстанции
+        public override void InsertInstance(string name, string newInstanceName)
+        {
+            foreach (var component in _classes)
+            {
+                if (component.IsComposite())
+                {
+                    if (component.Name.ToLower() == name.ToLower())
+                    {
+                        component.Add(new Instance(newInstanceName));
+                    }
+                    else if (component.Name != name)
+                    {
+                        component.InsertInstance(name, newInstanceName);
+                    }
+                }
+            }
+
+        }
         //Удаление элемента
         public override void Remove()
         {
@@ -54,34 +73,26 @@ namespace ProtegeComposite
         //Вывод икрархии
         public override void Display(int depth)
         {
-            Console.WriteLine(new string('-', depth)+Name);
+            Console.WriteLine(new string('-', depth)+"Class: " + Name);
             foreach(var component in _classes)
             {
                 component.Display(depth+2);
             }
         }
-        //Создание слота
-        public override void createSlot(Component component,string slotName)
-        {
-            component.slots.Add(new Slots(slotName));
-        }
+        
         //Добавление слота
-        public override void addSlot(string name)
+        public override void addSlot(string name, string slotName)
         {
 
             foreach (var component in _classes)
             {
                 if (component.Name == name)
                 {
-                    foreach (var slot in slots)
-                    {
-                        component.slots.Add(slot);
-                    }
+                    component.slots.Add(new Slots(slotName));
                 }
                 else
                 {
-                    foreach(var slot in slots)  
-                    component.slots.Add(slot);
+                    component.addSlot(name, slotName);
                 }
                 
             }

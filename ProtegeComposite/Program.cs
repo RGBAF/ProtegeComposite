@@ -15,8 +15,11 @@ namespace ProtegeComposite
             Console.WriteLine("/exit - Закрыть консоль;");
             Console.WriteLine("/addClass - Добавление класса;");
             Console.WriteLine("/addInstance - Добавление инстанции");
-            Console.WriteLine("/createSlot - Создание слота");
+            Console.WriteLine("/addSlot - Создание и добавление слота");
+            Console.WriteLine("/printSlot - Вывод слотов класса или инстанции");
+            Console.WriteLine("/fillSlots - Заполнение слотов");
             Console.WriteLine("/makeQuery - Сделать запрос");
+            Console.WriteLine("/helpQuerycommand");
         }
         static void Main(string[] args)
         {
@@ -62,21 +65,32 @@ namespace ProtegeComposite
                 }
                 else if(command == "/addInstance")
                 {
-                    Console.WriteLine("В разработке...");
+                    Console.WriteLine("Введите название новой инстанции: ");
+                    string newInstanceClass = Console.ReadLine();
+                    Console.WriteLine("Введите класс в который нужно добавить " + newInstanceClass);
+                    name = Console.ReadLine();
+                    tree.InsertInstance(name, newInstanceClass);
+                    Console.WriteLine();
+                    tree.Display(1);
                 }
-                else if (command == "/createSlot")
+                else if (command == "/addSlot")
                 {
                     Console.WriteLine("В разработке...");
                     Console.WriteLine("Введите название слота: ");
                     string slotName = Console.ReadLine();
-                    tree.createSlot(tree, slotName);
-                    Console.WriteLine("Слот " + slotName + " создан!" );
+                    Console.WriteLine("Введите класс в который нужно добавить " + slotName + ":");
+                    name = Console.ReadLine();
+                    root.addSlot(name, slotName);
+                    Console.WriteLine("Слот " + slotName + " добавлен в класс и его наследников!" );
+
+                    
                 }
-                else if (command == "/makeQuery")
+                else if (command == "/printSlot")
                 {
                     Console.WriteLine("В разработке...");
+
                 }
-                else if (command == "/printSlots")
+                else if (command == "/makeQuery")
                 {
                     Console.WriteLine("В разработке...");
                 }

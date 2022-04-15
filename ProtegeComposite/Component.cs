@@ -16,7 +16,10 @@ namespace ProtegeComposite
         {
             _name = name;
         }
-        public abstract void Insert(string name, string newClassName);
+        public virtual void Insert(string name, string newClassName)
+        {
+            throw new NotImplementedException("Нельзя добавить класс в инстанцию");
+        }
         public Component() { }
         
         public virtual void Add(Component component)
@@ -27,13 +30,15 @@ namespace ProtegeComposite
         {
             throw new NotImplementedException();
         }
+        public virtual void InsertInstance(string name, string newInstanceName)
+        {
+            throw new NotImplementedException("Нельзя добавить инстанцию в инстанцию");
+        }
         public virtual bool IsComposite()
         {
             return true;
         }
         public abstract void Display(int depth);
-        public abstract void createSlot(Component component, string slotName);
-        public abstract void addSlot(string name);
-
+        public abstract void addSlot(string name,string slotName);
     }
 }
