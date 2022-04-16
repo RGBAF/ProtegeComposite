@@ -34,7 +34,7 @@ namespace ProtegeComposite
             {
                 if (component.IsComposite())
                 {
-                    if (component.Name.ToLower() == name.ToLower())
+                    if (component.Name == name)
                     {
                         component.Add(new Class(newClassName));
                     }
@@ -53,7 +53,7 @@ namespace ProtegeComposite
             {
                 if (component.IsComposite())
                 {
-                    if (component.Name.ToLower() == name.ToLower())
+                    if (component.Name == name)
                     {
                         component.Add(new Instance(newInstanceName));
                     }
@@ -73,10 +73,21 @@ namespace ProtegeComposite
         //Вывод икрархии
         public override void Display(int depth)
         {
-            Console.WriteLine(new string('-', depth)+"Class: " + Name);
-            foreach(var component in _classes)
+            if (Name == "Tree")
             {
-                component.Display(depth+2);
+                Console.WriteLine("Ontolgy:");
+                foreach (var component in _classes)
+                {
+                    component.Display(depth + 6);
+                }
+            }
+            else
+            {
+                Console.WriteLine(new string('-', depth) + "Class: " + Name);
+                foreach (var component in _classes)
+                {
+                    component.Display(depth + 5);
+                }
             }
         }
         

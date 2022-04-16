@@ -15,114 +15,78 @@ namespace ProtegeComposite
             Console.WriteLine("/exit - Закрыть консоль;");
             Console.WriteLine("/addClass - Добавление класса;");
             Console.WriteLine("/addInstance - Добавление инстанции");
-            Console.WriteLine("/addSlot - Создание и добавление слота");
-            Console.WriteLine("/printSlot - Вывод слотов класса или инстанции");
-            Console.WriteLine("/fillSlots - Заполнение слотов");
-            Console.WriteLine("/makeQuery - Сделать запрос");
-            Console.WriteLine("/helpQuerycommand");
+            Console.WriteLine("/addSlot - Создание и добавление слота (В разработке)");
+            Console.WriteLine("/printSlot - Вывод слотов класса или инстанции (В разработке)");
+            Console.WriteLine("/fillSlots - Заполнение слотов (В разработке)");
+            Console.WriteLine("/makeQuery - Сделать запрос (В разработке)");
+            Console.WriteLine("/helpQueryCommand (В разработке)");
         }
         static void Main(string[] args)
         {
 
-            
+
             Component root = new Class("");
             Class tree = new Class("Tree");
             string command;
             root.Add(tree);
             string name;
             Console.WriteLine("Введите назавание онтологии:");
-            name= Console.ReadLine();
+            name = Console.ReadLine();
             root.Insert("Tree", name);
             Console.WriteLine("Онтология создана");
             tree.Display(1);
             while (true)
             {
-                Console.WriteLine("Введите команду(/help -информация о коммандах): ");
+
+                Console.WriteLine("\nВведите команду(/help -информация о коммандах): ");
                 command = Console.ReadLine();
                 Console.Clear();
-                if (command == "/help")
+                switch (command)
                 {
-                    Info();
-                }
-                else if (command == "/back")
-                {
-                    tree.Display(1);
-                }
-                else if(command == "/exit")
-                {
-                    Environment.Exit(0);
-                }
-                else if(command == "/addClass")
-                {
-                    
-                    Console.WriteLine("Введите название нового класса: ");
-                    string newNameClass = Console.ReadLine();
-                    Console.WriteLine("Введите класс в который нужно добавить " + newNameClass);
-                    name = Console.ReadLine();
-                    root.Insert(name, newNameClass);
-                    Console.WriteLine();
-                    tree.Display(1);
-                }
-                else if(command == "/addInstance")
-                {
-                    Console.WriteLine("Введите название новой инстанции: ");
-                    string newInstanceClass = Console.ReadLine();
-                    Console.WriteLine("Введите класс в который нужно добавить " + newInstanceClass);
-                    name = Console.ReadLine();
-                    tree.InsertInstance(name, newInstanceClass);
-                    Console.WriteLine();
-                    tree.Display(1);
-                }
-                else if (command == "/addSlot")
-                {
-                    Console.WriteLine("В разработке...");
-                    Console.WriteLine("Введите название слота: ");
-                    string slotName = Console.ReadLine();
-                    Console.WriteLine("Введите класс в который нужно добавить " + slotName + ":");
-                    name = Console.ReadLine();
-                    root.addSlot(name, slotName);
-                    Console.WriteLine("Слот " + slotName + " добавлен в класс и его наследников!" );
+                    case "/help":
+                        Info();
+                        break;
+                    case "/back":
+                        tree.Display(1);
+                        break;
+                    case "/exit":
+                        Environment.Exit(0);
+                        break;
+                    case "/addClass":
+                        Console.WriteLine("Введите название нового класса: ");
+                        string newNameClass = Console.ReadLine();
+                        Console.WriteLine("Введите класс в который нужно добавить " + newNameClass);
+                        name = Console.ReadLine();
+                        root.Insert(name, newNameClass);
+                        Console.WriteLine();
+                        tree.Display(1);
+                        break;
+                    case "/addInstance":
+                        Console.WriteLine("Введите название новой инстанции: ");
+                        string newInstanceClass = Console.ReadLine();
+                        Console.WriteLine("Введите класс в который нужно добавить " + newInstanceClass);
 
-                    
-                }
-                else if (command == "/printSlot")
-                {
-                    Console.WriteLine("В разработке...");
+                        name = Console.ReadLine();
+                        tree.InsertInstance(name, newInstanceClass);
+                        Console.WriteLine();
+                        tree.Display(1);
+                        break;
+                    case "/addSlot":
+                        Console.WriteLine("Введите название слота: ");
+                        string slotName = Console.ReadLine();
+                        Console.WriteLine("Введите класс в который нужно добавить " + slotName + ":");
+                        name = Console.ReadLine();
+                        root.addSlot(name, slotName);
+                        Console.WriteLine("Слот " + slotName + " добавлен в класс и его наследников!");
+                        break;
+                    case "/printSlot":
+                        break;
+                    default:
+                        Console.WriteLine("Такой команды не существует.\nВведите команду /help для просмотра информации о всех доступных командах!\n");
 
-                }
-                else if (command == "/makeQuery")
-                {
-                    Console.WriteLine("В разработке...");
+                        break;
                 }
             }
-            /* Component Class = new Class("Class1");
-             Component Class2 = new Class("Class2");
-             Component Class11 = new Class("Class11");
-             Component Class12 = new Class("Class12");
-             Component Class13 = new Class("Class13");
-             Component Class21 = new Class("Class21");
-             Component Class22 = new Class("Class22");
-             Component Instance11 = new Instance("Instance11");
-             Component Instance12 = new Instance("Instance12");
-             root.Add(tree);
-             tree.Add(Class);
-             tree.Add(Class2);
-             Class.Add(Class11);
-             Class.Add(Class12);
-             Class.Add(Class13);
-             Class2.Add(Class21);
-             Class2.Add(Class22);
-             Class11.Add(Instance11);
-             Class11.Add(Instance12);
-             root.Display(1);
-             root.Insert("ROOT: ", "TREE");
-             Console.WriteLine();
-             tree.Display(1);*/
-
-
-
-
-            
         }
     }
 }
