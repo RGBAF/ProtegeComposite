@@ -8,10 +8,18 @@ namespace ProtegeComposite
 {
     public class Slots
     {
-        public string Name { get; set; }
+        private string _name { get; set; }
+        public string Name { get { return _name; } set { _name = value; } }
+        private string _value{ get; set; }
+        public string Value { get { return _value; } set { _value = value; } }
+        public Slots()
+        {
+
+        }
         public Slots(string name)
         {
             Name = name;
         }
+
     }
 }

@@ -11,12 +11,21 @@ namespace ProtegeComposite
     {
         //Иерархия
         protected List<Component> _classes = new List<Component>();
-        
         //Конструктор 
         public Class(string name): base(name)
         {
+             
+        }
+        public Class(string name,Dictionary<string,string>slots) : base(name)
+        {
+            _slots = slots;
         }
         //Добавление элемента в класс
+        /*public override void Add(Component component, Dictionary<string,string>slots)
+        {
+            component._slots = slots;
+            _classes.Add(component);
+        }*/
         public override void Add(Component component)
         {
             _classes.Add(component);
@@ -30,13 +39,14 @@ namespace ProtegeComposite
         //Вставка класса в класс 
         public override void Insert(string name, string newClassName)
         {
+            
             foreach (var component in _classes)
             {
                 if (component.IsComposite())
                 {
                     if (component.Name == name)
                     {
-                        component.Add(new Class(newClassName));
+                        component.Add(new Class(newClassName,component._slots));
                     }
                     else if (component.Name != name)
                     {
@@ -44,10 +54,9 @@ namespace ProtegeComposite
                     }
                 }
             }
-           
         }
         //Создание инстанции
-        public override void InsertInstance(string name, string newInstanceName)
+        public override void InsertInstance(string name)
         {
             foreach (var component in _classes)
             {
@@ -55,16 +64,16 @@ namespace ProtegeComposite
                 {
                     if (component.Name == name)
                     {
-                        component.Add(new Instance(newInstanceName));
+                        component._instances.Add(new Instance(component._slots));
                     }
                     else if (component.Name != name)
                     {
-                        component.InsertInstance(name, newInstanceName);
+                        component.InsertInstance(name);
                     }
                 }
             }
-
         }
+
         //Удаление элемента
         public override void Remove()
         {
@@ -73,40 +82,74 @@ namespace ProtegeComposite
         //Вывод икрархии
         public override void Display(int depth)
         {
-            if (Name == "Tree")
+            if (IsComposite())
             {
-                Console.WriteLine("Ontolgy:");
-                foreach (var component in _classes)
+                if (Name == "Tree")
                 {
-                    component.Display(depth + 6);
+                    Console.WriteLine("Ontolоgy:");
+                    foreach (var component in _classes)
+                    {
+                        component.Display(depth + 5);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine(new string('-', depth) + "Class: " + Name);
+                    foreach (var component in _classes)
+                    {
+
+                        component.Display(depth + 5);
+                    }
                 }
             }
-            else
+            
+        }
+        public override void addSlotComponent(Component components, string slotName)
+        {
+
+           
+            foreach(var component in _classes)
             {
-                Console.WriteLine(new string('-', depth) + "Class: " + Name);
-                foreach (var component in _classes)
-                {
-                    component.Display(depth + 5);
-                }
+                component._slots.Add(slotName, null);
+                component.addSlotComponent(components, slotName);
             }
         }
-        
+       
         //Добавление слота
         public override void addSlot(string name, string slotName)
         {
-
             foreach (var component in _classes)
             {
                 if (component.Name == name)
-                {
-                    component.slots.Add(new Slots(slotName));
+                {   component._slots.Add(slotName, null);
+                    component.addSlotComponent(component, slotName);
                 }
                 else
                 {
                     component.addSlot(name, slotName);
                 }
-                
+            }
+        }
+        public override void displayInstance(string name)
+        {
+            if (IsComposite())
+            {
+                foreach (var component in _classes )
+                {
+                    if (component.Name == name)
+                    {
+                        foreach (var instance in component._instances)
+                        {
+                            instance.displayInstance();
+                        }
+                    }
+                    else
+                    {
+                        component.displayInstance(name);
+                    }
+                }
             }
         }
     }
+    
 }

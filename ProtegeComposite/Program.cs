@@ -15,8 +15,8 @@ namespace ProtegeComposite
             Console.WriteLine("/exit - Закрыть консоль;");
             Console.WriteLine("/addClass - Добавление класса;");
             Console.WriteLine("/addInstance - Добавление инстанции");
-            Console.WriteLine("/addSlot - Создание и добавление слота (В разработке)");
-            Console.WriteLine("/printSlot - Вывод слотов класса или инстанции (В разработке)");
+            Console.WriteLine("/addSlot - Создание и добавление слота");
+            Console.WriteLine("/printInstance- Вывод инстанции");
             Console.WriteLine("/fillSlots - Заполнение слотов (В разработке)");
             Console.WriteLine("/makeQuery - Сделать запрос (В разработке)");
             Console.WriteLine("/helpQueryCommand (В разработке)");
@@ -55,19 +55,16 @@ namespace ProtegeComposite
                     case "/addClass":
                         Console.WriteLine("Введите название нового класса: ");
                         string newNameClass = Console.ReadLine();
-                        Console.WriteLine("Введите класс в который нужно добавить " + newNameClass);
+                        Console.WriteLine("Введите класс в который нужно iдобавить " + newNameClass);
                         name = Console.ReadLine();
                         root.Insert(name, newNameClass);
                         Console.WriteLine();
                         tree.Display(1);
                         break;
                     case "/addInstance":
-                        Console.WriteLine("Введите название новой инстанции: ");
-                        string newInstanceClass = Console.ReadLine();
-                        Console.WriteLine("Введите класс в который нужно добавить " + newInstanceClass);
-
+                        Console.WriteLine("Введите класс в который нужно добавить: ");
                         name = Console.ReadLine();
-                        tree.InsertInstance(name, newInstanceClass);
+                        tree.InsertInstance(name);
                         Console.WriteLine();
                         tree.Display(1);
                         break;
@@ -79,11 +76,18 @@ namespace ProtegeComposite
                         root.addSlot(name, slotName);
                         Console.WriteLine("Слот " + slotName + " добавлен в класс и его наследников!");
                         break;
-                    case "/printSlot":
+                    case "/printInstance":
+                        Console.WriteLine("Введите название класса, инстанции которого нужно вывести");
+                        name= Console.ReadLine();
+                        tree.displayInstance(name);
+                        break;
+                    case "/fillSlot":
+                        Console.WriteLine("Введите класс в котором надо заполнить инстанции");
+                        name = Console.ReadLine();
+
                         break;
                     default:
                         Console.WriteLine("Такой команды не существует.\nВведите команду /help для просмотра информации о всех доступных командах!\n");
-
                         break;
                 }
             }
